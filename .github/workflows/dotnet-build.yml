@@ -1,0 +1,21 @@
+name: Push e Workflow Agendado  # Nome do workflow
+
+on:
+  push:
+    branches:
+      - main  # Executa o workflow em push para a branch 'main'
+  schedule:
+    - cron: '0 * * * *'  # Executa o workflow a cada hora
+
+jobs:
+  run-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Usar uma action pré-existente
+      - name: Fazer checkout do repositório  # Nome da etapa
+        uses: actions/checkout@v3
+
+      # Step 2: Executar um script personalizado
+      - name: Executar script personalizado  # Nome da etapa
+        run: ./scripts/custom_script.sh
